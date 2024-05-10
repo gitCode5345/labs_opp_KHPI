@@ -89,16 +89,16 @@ int menu()
     cout << endl;
 
     cout << "1. Write information to a file\n"
-     << "2. Read information from a file\n"
-     << "3. Sort information by movie title\n"
-     << "4. Add element\n"
-     << "5. Delete element\n"
-     << "6. Change information in an element\n"
-     << "7. Output data about movies\n"
-     << "8. View action history\n"
-     << "9. Close the program" << endl;    
+    << "2. Read information from a file\n"
+    << "3. Sort information by movie title\n"
+    << "4. Add element\n"
+    << "5. Delete element\n"
+    << "6. Change information in an element\n"
+    << "7. Output data about movies\n"
+    << "8. View action history\n"
+    << "9. Close the program" << endl;    
      
-     cin >> value;
+    cin >> value;
 
     return value;
 }
