@@ -69,13 +69,13 @@ int main()
         case 8:
             ReadHistoryAction();
             break;
+        
         case 9:
-            
             return 0;
             
         default:
             cout << "Enter the correct information" << endl;
-            break;
+
         }
     }
 
@@ -88,8 +88,17 @@ int menu()
     cout << "Select an action" << endl;
     cout << endl;
 
-    cout << "1. Write information to a file\n2. Read information from a file\n3. Sort information by movie title\n4. Add element\n5. Delete element\n6. Change information in an element\n7. Output data about movies\n8. View action history \n9. Close the program" << endl;
-    cin >> value;
+    cout << "1. Write information to a file\n"
+     << "2. Read information from a file\n"
+     << "3. Sort information by movie title\n"
+     << "4. Add element\n"
+     << "5. Delete element\n"
+     << "6. Change information in an element\n"
+     << "7. Output data about movies\n"
+     << "8. View action history\n"
+     << "9. Close the program" << endl;    
+     
+     cin >> value;
 
     return value;
 }
@@ -162,10 +171,7 @@ void AddElement()
             cout << "Try again: ";
         }
         else
-        {
             correctInput = true;
-        }
-        
     }
 
     cout << endl;
@@ -283,9 +289,7 @@ void DeleteElement()
             cout << "Try again: ";
         }
         else
-        {
             correctInput = true;
-        }
     }
 
     movies.erase(movies.begin() + (index - 1));
@@ -320,9 +324,7 @@ void ChangeElement()
             cout << "Try again: ";
         }
         else
-        {
             correctInput = true;
-        }
     }
 
     correctInput = false;
@@ -348,10 +350,7 @@ void ChangeElement()
             cout << "Try again: ";
         }
         else
-        {
             correctInput = true;
-        }
-        
     }
 
     cout << "The data was successfully changed" << nowTime << endl;
@@ -391,9 +390,7 @@ void ReadHistoryAction()
     while (getline(consoleLog, getData))
     {
         if (consoleLog.eof())
-        {
             break;
-        }
         
         cout << getData << endl;
     }
