@@ -14,6 +14,7 @@ public:
     Product(int quantity, int productCode, double price, string supplier);
     Product(int quantity, int productCode, double price, string supplier, string countryOrigin);
     Product(int quantity, int productCode, double price, string supplier, string countryOrigin, string productName);
+    ~Product();
 
     void SetQuantity(int quantity);
     int GetQuantity();
@@ -121,37 +122,54 @@ Product::Product()
 
 Product::Product(int quantity) : productCode(0), price(0), supplier("Not specified"), productName("Not specified"), countryOrigin("Not specified")
 {
+    cout << "The first constructor is called" << endl;
+
     this->quantity = quantity;
 }
 
 Product::Product(int quantity, int productCode) : Product(quantity)
 {
+    cout << "The second constructor is called" << endl;
+
     this->productCode = productCode;
 }
 
 Product::Product(int quantity, int productCode, double price) : Product(quantity, productCode)
 {
+    cout << "The third constructor is called" << endl;
+
     this->price = price;
 }
 
 Product::Product(int quantity, int productCode, double price, string supplier) : Product(quantity, productCode, price)
 {
+    cout << "The fourth constructor is called" << endl;
+
     this->supplier = supplier;
 }
 
 Product::Product(int quantity, int productCode, double price, string supplier, string countryOrigin) : Product(quantity, productCode, price, supplier)
 {
+    cout << "The fifth constructor is called" << endl;
+
     this->countryOrigin = countryOrigin;
 }
 
 Product::Product(int quantity, int productCode, double price, string supplier, string countryOrigin, string productName)
 {
+    cout << "The sixthp constructor is called" << endl;
+
     this->quantity = quantity;
     this->productCode = productCode;
     this->price = price;
     this->supplier = supplier;
     this->countryOrigin = countryOrigin;
     this->productName = productName;
+}
+
+Product::~Product()
+{
+    cout << "The destructor is called" << endl;
 }
 
 void Product::ShowInformationProduct()
