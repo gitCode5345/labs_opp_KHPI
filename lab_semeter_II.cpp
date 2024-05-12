@@ -21,6 +21,7 @@ tm *currentTime = localtime(&myTime);
 string nowTime = " Time: " + to_string(currentTime->tm_hour) + ":" + to_string(currentTime->tm_min) + ":" + to_string(currentTime->tm_sec) + "\n";
 
 int menu();
+void openFile(fstream & fileOp);
 void ReadFromFile();
 void WriteToFile();
 void WriteHistoryAction(string historyActions);
@@ -85,8 +86,7 @@ int main()
 int menu()
 {
     int value;
-    cout << "Select an action" << endl;
-    cout << endl;
+    cout << "Select an action" << endl << endl;
 
     cout << "1. Write information to a file\n"
     << "2. Read information from a file\n"
@@ -103,6 +103,24 @@ int menu()
     return value;
 }
 
+void openFile(fstream & fileOp)
+{
+    const string path = "file_lab1.bin";
+    fileOp.open(path, ios::binary | ios::in | ios::out);
+
+    if(!fileOp.is_open())
+    {
+        cout << "Error opening file" << endl;
+        return;
+    }
+
+    else if (fileOp.eof())
+    {
+        cout << "File is empty" << endl;
+        return;
+    }
+}
+
 void WriteToFile()
 {
     if (movies.empty())
@@ -111,23 +129,8 @@ void WriteToFile()
         return;
     }
 
-    string path;
-    cout << "Specify the path to the file" << endl;
-    cin >> path;
-
-    if (path == "consoleData.txt")
-    {
-        cout << "Not allowed" << endl;
-        return;
-    }
-    
-    ofstream ofFile(path, ios::binary | ios::out);
-
-    if (!ofFile)
-    {
-        cout << "Error opening file" << endl;
-        return;
-    }
+    fstream ofFile;
+    openFile(ofFile);
 
     for (auto &mov : movies)
     {
@@ -179,35 +182,12 @@ void AddElement()
     movies.push_back(element);
     cout << "New item added successfully" << nowTime << endl;
     WriteHistoryAction("New item added successfully" + nowTime);
-
 }
 
 void ReadFromFile()
 {
-    string path;
-    cout << "Specify the path to the file" << endl;
-    cin >> path;
-
-    if (path == "consoleData.txt")
-    {
-        cout << "Not allowed" << endl;
-        return;
-    }
-
-    ifstream ifFile;
-    
-    ifFile.open(path, ios::binary | ios::in);
-
-    if(!ifFile)
-    {
-        cout << "Error opening file" << endl;
-        return;
-    }
-    else if (ifFile.eof())
-    {
-        cout << "File is empty" << endl;
-        return;
-    }
+    fstream ifFile;
+    openFile(ifFile);
 
     movies.clear();
     
@@ -261,7 +241,12 @@ void PrintData()
 
     for (int i = 0; i < movies.size(); i++)
     {
-        cout << "Index: " << i + 1 << " Name: " << movies[i].nameOfMovie << "\n" << " Year of publish: " << movies[i].year << "\n" << " Name of director: " << movies[i].director << "\n" << " Country of publish: " << movies[i].country << endl;
+        cout << "Index: " << i + 1
+        << " Name: " << movies[i].nameOfMovie << "\n" 
+        << " Year of publish: " << movies[i].year << "\n"
+        << " Name of director: " << movies[i].director << "\n"
+        << " Country of publish: " << movies[i].country << endl;
+
         cout << endl;
     }
 }
@@ -294,8 +279,7 @@ void DeleteElement()
 
     movies.erase(movies.begin() + (index - 1));
     
-    cout << "Deleting data successfully" << endl;
-    cout << endl;
+    cout << "Deleting data successfully" << endl << endl;
 
     WriteHistoryAction("Deleting data successfully" + nowTime);
     PrintData();
