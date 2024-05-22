@@ -76,12 +76,11 @@ void Dish::ShowInformation()
 {
     cout << "Information about the dish:" << endl;
 
-    cout << "Name of the dish: " << this->nameOfDish << endl;
-    cout << "Price: " << this->price << "$" << endl;
-    cout << "Ingredients for the dish: " << this->ingredients << endl;
-    cout << "The number of calories: " << this->caloricValue << endl;
+    cout << "Name of the dish: " << this->nameOfDish
+         << "Price: " << this->price << "$"
+         << "Ingredients for the dish: "
+         << "The number of calories: " << this->caloricValue << endl << endl;
 
-    cout << endl;
 }
 
 Dish::Dish(string name, string ingredients, double price, double caloricValue)
@@ -109,17 +108,13 @@ void Dish::CompareCaloric(Dish & otherDish)
     cout << " - " << otherDish.caloricValue << endl;
 
     if (this->caloricValue > otherDish.caloricValue)
-    {
         cout << "More calories in " << this->nameOfDish << " than in " << otherDish.nameOfDish << endl;
-    }
+
     if (this->caloricValue < otherDish.caloricValue)
-    {
         cout << "More calories in " << otherDish.nameOfDish << " than in " << this->nameOfDish << endl;
-    }
+
     else if(this->caloricValue == otherDish.caloricValue)
-    {
         cout << "Calories are equal in two dishes" << endl;
-    }
     
     cout << endl;
 }
