@@ -18,14 +18,9 @@ BrokenLine::~BrokenLine()
 void BrokenLine::RemovePoint(int index)
 {
     if (index >= 0 && index < vecPoints.size())
-    {
         vecPoints.erase(vecPoints.begin() + index);
-    }
-
     else
-    {
         cout << "Sorry, you entered an incorrect index" << endl;
-    }
 }
 
 int BrokenLine::getNumberOfPoints()
