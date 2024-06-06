@@ -55,7 +55,8 @@ void Matrix::SetSizeCols(int cols)
 
 Matrix& Matrix::operator=(const Matrix& other)
 {
-    if (this == &other) return *this;
+    if (this == &other) 
+        return *this;
 
     rows = other.rows;
     cols = other.cols;
@@ -67,19 +68,13 @@ Matrix& Matrix::operator=(const Matrix& other)
 Matrix Matrix::operator-(Matrix& other)
 {
     if (rows != other.rows || cols != other.cols) 
-    {
         throw std::invalid_argument("Matrices dimensions must match for subtraction.");
-    }
 
     Matrix result(rows, cols);
 
     for (int i = 0; i < rows; i++)
-    {
         for (int j = 0; j < cols; j++)
-        {
             result.data[i][j] = data[i][j] - other.data[i][j];
-        }
-    }
 
     return result;
 }
@@ -122,14 +117,14 @@ Matrix& MakePrefixDecrement(Matrix& a)
     return a;
 }
 
-Matrix& MakePostfixDecrement(Matrix& a, int)
+Matrix& MakePostfixDecrement(Matrix& a, int) // переделать
 {
     MakePrefixDecrement(a);
 
     return a;
 }
 
-Matrix& MultiplyingMatrixNumber(Matrix& other, double num)
+Matrix& MultiplyingMatrixNumber(Matrix& other, double num) // переделать
 {
     double element;
 
